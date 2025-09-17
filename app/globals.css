@@ -1,0 +1,346 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens to match Lumière dark minimal theme */
+  --background: #000000; /* Jet black for the overall background */
+  --foreground: #ffffff; /* White for primary text */
+  --card: #1f2937; /* Dark gray for cards and containers */
+  --card-foreground: #e0e0e0; /* Soft silver for card text */
+  --popover: #1f2937; /* Matching dark gray for popovers */
+  --popover-foreground: #ffffff; /* White for popover text */
+  --primary: #6366f1; /* Accent blue for interactive elements */
+  --primary-foreground: #ffffff; /* White text on primary buttons */
+  --secondary: #e0e0e0; /* Silver for secondary actions */
+  --secondary-foreground: #000000; /* Black text on secondary buttons */
+  --muted: #6b7280; /* Muted gray for less emphasized text */
+  --muted-foreground: #ffffff; /* White text on muted backgrounds */
+  --accent: #6366f1; /* Accent color for highlights */
+  --accent-foreground: #ffffff; /* White text on accent backgrounds */
+  --destructive: #ff4c4c; /* Red for error messages or alerts */
+  --destructive-foreground: #ffffff; /* White text for destructive actions */
+  --border: #e0e0e0; /* Soft silver for borders */
+  --input: #1f2937; /* Dark gray for input fields */
+  --ring: #6366f1; /* Blue for focus rings */
+  --chart-1: #6366f1; /* Primary color for charts */
+  --chart-2: #10b981; /* Secondary accent color for charts */
+  --chart-3: #fbbf24; /* Tertiary accent color for charts */
+  --chart-4: #f472b6; /* Fourth accent color for charts */
+  --chart-5: #3b82f6; /* Fifth accent color for charts */
+  --radius: 0.5rem; /* Rounded corners for a modern feel */
+  --sidebar: #1f2937; /* Dark gray for sidebars */
+  --sidebar-foreground: #ffffff; /* White text in sidebars */
+  --sidebar-primary: #6366f1; /* Primary accent in sidebars */
+  --sidebar-primary-foreground: #ffffff; /* White text on primary sidebar elements */
+  --sidebar-accent: #e0e0e0; /* Silver accents in sidebars */
+  --sidebar-accent-foreground: #000000; /* Black text on sidebar accents */
+  --sidebar-border: #e0e0e0; /* Soft silver for sidebar borders */
+  --sidebar-ring: #6366f1; /* Blue for focus rings in sidebars */
+}
+
+.dark {
+  /* Dark mode uses same colors since this is a dark-first design */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1f2937;
+  --card-foreground: #e0e0e0;
+  --popover: #1f2937;
+  --popover-foreground: #ffffff;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #e0e0e0;
+  --secondary-foreground: #000000;
+  --muted: #6b7280;
+  --muted-foreground: #ffffff;
+  --accent: #6366f1;
+  --accent-foreground: #ffffff;
+  --destructive: #ff4c4c;
+  --destructive-foreground: #ffffff;
+  --border: #e0e0e0;
+  --input: #1f2937;
+  --ring: #6366f1;
+  --chart-1: #6366f1;
+  --chart-2: #10b981;
+  --chart-3: #fbbf24;
+  --chart-4: #f472b6;
+  --chart-5: #3b82f6;
+  --sidebar: #1f2937;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0e0e0;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e0e0e0;
+  --sidebar-ring: #6366f1;
+}
+
+@theme inline {
+  /* Added Playfair Display font variable for headers */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair-display);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Added custom cursor and smooth scrolling */
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23ffffff' stroke='%23000000' stroke-width='1'/%3E%3C/svg%3E")
+      8 8, auto;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Added custom button styles from specifications */
+.lumiere-button {
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 60px;
+  border-radius: 50px;
+  border: 1px solid #000000;
+  position: relative;
+  font-size: 18px;
+  font-family: var(--font-sans);
+  transition: 0.4s ease-in-out;
+  color: #000000;
+  text-decoration: none;
+}
+
+.lumiere-button:hover::before {
+  content: "";
+  background: #fa63ab;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  z-index: -1;
+  bottom: -5px;
+  left: -5px;
+  border-radius: 50px;
+}
+
+.lumiere-button:hover::after {
+  content: "";
+  background: #466fee;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -2;
+  bottom: -10px;
+  left: -10px;
+  border-radius: 50px;
+}
+
+.lumiere-button:hover {
+  top: -5px;
+  left: 5px;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23ffffff' stroke='%23000000' stroke-width='1'/%3E%3C/svg%3E")
+    8 8, pointer;
+}
+
+/* Added particle animation keyframes */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+.particle {
+  animation: float 6s ease-in-out infinite;
+}
+
+.particle:nth-child(2) {
+  animation-delay: -2s;
+}
+.particle:nth-child(3) {
+  animation-delay: -4s;
+}
+
+/* Added fade-in animation for scroll effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animation for the pulsing effect */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation for the ping effect */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Custom animations for the orbital timeline */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+/* Backdrop blur */
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+}
+
+/* Custom gradients */
+.bg-gradient-orbital {
+  background: linear-gradient(to bottom right, #6366f1, #3b82f6, #14b8a6);
+}
+
+/* Z-index utilities */
+.z-10 {
+  z-index: 10;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+/* Custom shadows */
+.shadow-orbital {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Custom transforms */
+.scale-125 {
+  transform: scale(1.25);
+}
+
+.scale-150 {
+  transform: scale(1.5);
+}
+
+/* Custom opacity values */
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+/* Custom border opacity */
+.border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.border-white\/30 {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.border-white\/40 {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Custom background opacity */
+.bg-black\/90 {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.bg-white\/50 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Custom text opacity */
+.text-white\/70 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.text-white\/80 {
+  color: rgba(255, 255, 255, 0.8);
+}
